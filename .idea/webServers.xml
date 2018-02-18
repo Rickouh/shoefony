@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="173dd2c0-5d48-4405-bb02-0d5f033fe4b2" name="INFODB2" url="http://ssh.iutmetz.univ-lorraine.fr">
+        <fileTransfer host="ssh.iutmetz.univ-lorraine.fr" port="21" accessType="FTPS" username="joseph15u">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

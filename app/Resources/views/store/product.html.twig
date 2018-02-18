@@ -1,0 +1,70 @@
+{% extends "store/layout/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Produit n°X{% endblock %}
+
+{% block content_store %}
+
+    <p class="lead">Fiche descriptive " {{ product.title|title }} " <a href="{{ path('store_products') }}" class="btn btn-default pull-right">Retour aux produits</a></p>
+
+    <div class="row">
+
+        <div class="thumbnail">
+            <img src="{{ asset('img/products/' ~ product.image.url) }}" alt="{{ product.image.alt }}" class="img-responsive">
+            <div class="caption-full">
+                <h4 class="pull-right"><span class="badge">{{ product.price }} €</span></h4>
+                <h3>{{ product.title|title }}</h3>
+                <p>{{ product.description }}</p>
+                <p>
+                    {{ product.longDescription }}
+                </p>
+            </div>
+        </div>	
+
+        <div class="well">
+
+            <p class="pull-right label label-success">Actuellement {{ opinions|length }} avis</p>
+            {% for opinion in opinions %}
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="label label-info">{{ opinion.author }}</span>
+                    <span class="label label-default pull-right">{{ opinion.date|date("d/m/Y \\à H:i") }}</span>
+                    <p>{{ opinion.content }}</p>
+                </div>
+            </div>
+
+            <hr>
+            {% endfor %}
+            <div>
+                <form  method="POST" {{ form_enctype(form) }}>
+                    <div class="form-group">
+                        {{ form_errors(form.author) }}
+                        {{ form_label(form.author) }}
+                        {{ form_widget(form.author, { 'attr' : { 'class' : 'form-control', 'placeholder' : form.author.vars.label } }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_errors(form.content) }}
+                        {{ form_label(form.content) }}
+                        {{ form_widget(form.content, { 'attr' : { 'class' : 'form-control', 'placeholder' : form.content.vars.label } }) }}
+                    </div>
+
+                    {{ form_rest(form) }}
+
+                    <button type="submit" class="btn btn-info">Envoyer mon avis</button>
+                </form>
+                <!--<form method="POST">
+                    <div class="form-group">
+                        <label for="name">Votre nom</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre avis</label>
+                        <textarea class="form-control" name="comment" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">Envoyer mon avis</button>
+                </form>-->
+            </div>
+        </div>                
+
+    </div>
+
+{% endblock %}
